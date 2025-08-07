@@ -17,16 +17,23 @@ const ProductCard = ({ id, name, price, image, category, isNew, index = 0 }: Pro
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ 
+        y: -8,
+        rotateY: 2,
+        scale: 1.02
+      }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group relative bg-card rounded-lg overflow-hidden shadow-card hover:shadow-elegant transition-all duration-500"
+      className="group relative bg-card rounded-lg overflow-hidden shadow-card hover:shadow-elegant transition-all duration-500 cursor-hover transform-gpu"
     >
       {/* Product Image */}
       <div className="relative overflow-hidden aspect-[3/4]">
-        <img
+        <motion.img
           src={image}
           alt={name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object-cover"
+          whileHover={{ scale: 1.1, rotate: 1 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         />
         
         {/* New Badge */}
@@ -84,11 +91,16 @@ const ProductCard = ({ id, name, price, image, category, isNew, index = 0 }: Pro
           </p>
           
           <motion.button
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.1, rotate: 10 }}
             whileTap={{ scale: 0.95 }}
-            className="p-2 rounded-full hover:bg-accent transition-colors"
+            className="p-2 rounded-full hover:bg-accent transition-colors cursor-hover"
           >
-            <ShoppingBag className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+            <motion.div
+              whileHover={{ y: -1 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ShoppingBag className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+            </motion.div>
           </motion.button>
         </div>
       </div>

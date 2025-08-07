@@ -67,21 +67,44 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 1.2 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Button 
-              variant="hero" 
-              size="xl"
-              className="min-w-[200px]"
+            <motion.div
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
             >
-              Lihat Koleksi
-            </Button>
+              <Button 
+                variant="hero" 
+                size="xl"
+                className="min-w-[200px] cursor-hover relative overflow-hidden"
+              >
+                <motion.span
+                  whileHover={{ y: -20 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Lihat Koleksi
+                </motion.span>
+                <motion.span
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ y: 20 }}
+                  whileHover={{ y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Lihat Koleksi ✨
+                </motion.span>
+              </Button>
+            </motion.div>
             
-            <Button 
-              variant="minimal" 
-              size="xl"
-              className="min-w-[200px] text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground hover:text-primary"
+            <motion.div
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
             >
-              Tentang Kami
-            </Button>
+              <Button 
+                variant="minimal" 
+                size="xl"
+                className="min-w-[200px] text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground hover:text-primary cursor-hover"
+              >
+                Tentang Kami
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
 

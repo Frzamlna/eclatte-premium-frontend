@@ -25,11 +25,18 @@ const Navbar = () => {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex-shrink-0"
+            whileTap={{ scale: 0.98 }}
+            className="flex-shrink-0 cursor-hover"
           >
-            <h1 className="text-2xl font-serif font-bold text-primary tracking-tight">
+            <motion.h1 
+              className="text-2xl font-serif font-bold text-primary tracking-tight"
+              whileHover={{
+                textShadow: "0 0 8px hsl(var(--primary) / 0.3)",
+              }}
+              transition={{ duration: 0.2 }}
+            >
               Eclatte
-            </h1>
+            </motion.h1>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -39,11 +46,23 @@ const Navbar = () => {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  whileHover={{ y: -2 }}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium relative group"
+                  whileHover={{ y: -2, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300 font-medium relative group cursor-hover px-2 py-1 rounded-md"
                 >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                  <motion.span
+                    whileHover={{
+                      textShadow: "0 0 8px hsl(var(--primary) / 0.5)",
+                    }}
+                  >
+                    {item.name}
+                  </motion.span>
+                  <motion.span 
+                    className="absolute -bottom-1 left-0 h-0.5 bg-primary"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </motion.a>
               ))}
             </div>
@@ -52,14 +71,30 @@ const Navbar = () => {
           {/* Cart Icon */}
           <div className="flex items-center space-x-4">
             <motion.button
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
-              className="relative p-2 text-muted-foreground hover:text-primary transition-colors duration-300"
+              className="relative p-2 text-muted-foreground hover:text-primary transition-colors duration-300 cursor-hover rounded-full hover:bg-accent/20"
             >
-              <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
+              <motion.div
+                whileHover={{ y: -1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ShoppingBag className="h-5 w-5" />
+              </motion.div>
+              <motion.span 
+                className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium"
+                whileHover={{ scale: 1.2 }}
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "reverse" 
+                }}
+              >
                 2
-              </span>
+              </motion.span>
             </motion.button>
 
             {/* Mobile menu button */}
